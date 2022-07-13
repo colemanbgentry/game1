@@ -1,29 +1,30 @@
 use std::io;
+//This is the main function to start the game loop.
 fn main() {
     introduction();
     exit_room();
 }
-
+//Just something that allows the player to know what is going on in the beginning. 
 fn introduction() {
     println!("You are now in a small room. A bright ceiling light glows above you.");
     println!("As you examine ahead of you, you notice a door. On the right of this door, you see a sign.");
     println!("The sign reads,\"Figure out the four digit code, enter into the keypad, then you will be released.\"");
 }
-
+//The main room that the player will be in. 
 fn exit_room() {
     exit_room_options(0);
     let mut found_out = 0;
     let mut checked =  1;
-    loop {
+    loop { // Loops were interesting to learn about not like a for loop or a while loop that just loop will break; is reached. 
         println!("Enter a number to choose what to do next.");
         let mut choice = String::new();
-        io::stdin()
+        io::stdin() // The stdin readline was also new to learn.
             .read_line(&mut choice)
             .expect("\"What do I want to do?\", you think? Enter a number from list of options.");
 
         let choice: i32 = match choice.trim().parse() {
             Ok(num) => num,
-            Err(_) => continue
+            Err(_) => continue // This might not even work but just in case, its for making sure the player uses a number. 
         };
         if choice == 1 {
             if checked == 1 {
@@ -51,7 +52,7 @@ fn exit_room() {
         }
     }
 }
-
+// A way for the player to learn options then more options.
 fn exit_room_options(x: i32) {
     println!("What do you want to do?");
     println!("1. Examine the room again?");
@@ -62,13 +63,13 @@ fn exit_room_options(x: i32) {
         println!("5. Examine the sign?")
     }
 }
-
+//More dialog
 fn examine_exit_room() {
     println!("You wonder around the room and you notice something.");
     println!("You notice that the sign is slightly curled at one end.");
     println!("You now have another option!");
 }
-
+//Funny bit of dialog
 fn sit_down() {
     println!("You decide to sit down and wait.");
     println!("And wait");
@@ -77,7 +78,7 @@ fn sit_down() {
     println!("Then you decide that waiting wasn't what you should be doing.");
     println!("You get back up on your feet.")
 }
-
+//A clue dialog
 fn sign() {
     println!("You approuch the sign and lift up the corner.");
     println!("You then find a list of numbers.");
@@ -95,7 +96,7 @@ fn sign() {
             \"9:9\"");
     println!("Not sure what it all means, but you accept the clue. You will remember these numbers.")
 }
-
+//The final piece of the game the exit. 
 fn door() {
     door_options();
     loop {
@@ -121,7 +122,7 @@ fn door() {
         }
     }
 }
-
+//More dialog for the door. 
 fn door_options() {
     println!("You approuch the door.
     A panel pops out of the wall and a keypad rests on the end, 
@@ -133,7 +134,7 @@ fn door_options() {
     println!("1. Enter a password?");
     println!("2. Not ready yet?");
 }
-
+//Get one number wrong won't allow you through.
 fn enter_password() {
     let first_number = 0;
     let second_number = 8;
@@ -170,7 +171,7 @@ fn enter_password() {
     }
 
 }
-
+//This was fun. Allow me to use the same function to be called and get a number many times.
 fn press_button() -> i32 {
     loop {
         let mut choice = String::new();
@@ -184,14 +185,14 @@ fn press_button() -> i32 {
             Err(_) => continue
         };
         if choice > 9 {
-            println!("What the? Enter a right number between 1 to 9 please?")
+            println!("What the? I can only do 1 to 9, you think to yourself?")
         }else {
             button_interactions(choice);
             return choice;
         }
     }
 }
-
+//A bit of cool dialog using the match system, which isn't like your normal switch.  
 fn button_interactions(x: i32) {
     match x {
         0 => println!("You lower your finger down to the zero and press it."),

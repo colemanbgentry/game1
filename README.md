@@ -8,7 +8,7 @@ I created this little game with Rust because I wanted a new language to make a s
 
 Wanting to see it before you try it yourself, I have a video here on youTube with a few of my other projects. 
 
-[Escape Room - Rust](http://youtube.link.goes.here)
+[Escape Room - Rust](https://youtu.be/YNhbyE-xqO0)
 
 # Development Environment
 
